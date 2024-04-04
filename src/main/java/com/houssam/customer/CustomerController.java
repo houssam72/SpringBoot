@@ -1,6 +1,7 @@
 package com.houssam.customer;
 
 
+import com.houssam.Exception.ApiRequestException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,17 @@ public class CustomerController {
     @GetMapping
     public List<Customer> getCustomer(){
         return this.CustomerService.getCustomer();
+    }
+
+
+    @GetMapping("{CustomerId}/Exception")
+    public Optional<Customer> getCustomerById(@PathVariable("CustomerId") Integer id){
+        throw new ApiRequestException("ApiRequestException for customer" + id);
+    }
+
+    @GetMapping("{CustomerId}")
+    public Optional<Customer> getCustomerByIdException(@PathVariable("CustomerId") Integer id){
+        return this.CustomerService.getCustomerById(id);
     }
 
     @PostMapping

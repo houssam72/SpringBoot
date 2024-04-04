@@ -1,5 +1,9 @@
 server:
   port: 3030
+  error:
+    include-binding-errors: always
+    include-stacktrace: never
+    include-message: always
 
 spring:
   datasource:

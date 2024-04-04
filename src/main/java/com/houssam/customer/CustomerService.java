@@ -1,9 +1,8 @@
 package com.houssam.customer;
 
+import com.houssam.Exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation  .PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +20,14 @@ public class CustomerService {
         return this.customerRepo.findAll();
     }
 
+    public Optional<Customer> getCustomerById(Integer id){
+
+        if(!this.customerRepo.findById(id).isPresent())
+            throw new NotFoundException( "Customet with :"+ id+" N=not found");
+
+            return this.customerRepo.findById(id);
+    }
+
     public void addCustomer(Customer request){
 
         Customer customer=new Customer();
@@ -32,7 +39,7 @@ public class CustomerService {
 
     }
 
-    public Optional<Customer> updateCustomer(Customer request, @PathVariable("CustomerId") Integer id) {
+    public Optional<Customer> updateCustomer(Customer request,  Integer id) {
 
         return this.customerRepo.findById(id).map(
                 customer -> {
