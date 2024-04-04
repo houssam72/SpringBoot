@@ -1,4 +1,4 @@
-package com.houssam;
+package com.houssam.customer;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
