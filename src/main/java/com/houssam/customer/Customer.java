@@ -3,6 +3,7 @@ package com.houssam.customer;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.validation.constraints.*;
 
 import java.util.Objects;
 
@@ -12,8 +13,16 @@ public class Customer {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @NotEmpty(message = "Name most be not empty")
     private String name;
+
+    @NotEmpty(message = "Email most be not empty")
+    @Email(message = "Email not valid")
     private String email;
+
+    @NotNull(message = "age most be not empty")
+    @Min(value=1 , message = "L'age doit etre plus grand de 0")
     private Integer age;
 
     public Customer(Integer id, String name, String email, Integer age) {
