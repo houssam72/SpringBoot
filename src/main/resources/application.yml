@@ -19,4 +19,13 @@ spring:
           format_sql: true
       show-sql: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
 
